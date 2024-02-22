@@ -17,10 +17,10 @@ late final appwrite.Database database;
 
 Future<dynamic> main(final context) async {
 
-  context.log("version: 0.4");
+  context.log("version: 0.5");
   context.log("req.body = ${context.req.body}");
 
-  final requestBody = json.decode(context.req.body);
+  final requestBody = context.req.body;
 
   final String apiKey = requestBody['apiKey'];
   await init(apiKey);
