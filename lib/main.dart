@@ -44,7 +44,7 @@ Future<dynamic> main(final context) async {
     try {
       final requestBody = context.req.body;
       final httpMethod = context.req.method;
-      final result = await sdk.executeDatabase(httpMethod, path, requestBody);
+      final result = await sdk.executeDatabase(context, httpMethod, path, requestBody);
       return context.res.json({
           'ok': true, 
           'response': result

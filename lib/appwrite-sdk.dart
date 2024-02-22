@@ -19,7 +19,7 @@ Future init(final context, final String apiKey) async {
   }
 }
 
-Future<dynamic> executeDatabase(String httpMethod, String path, dynamic body) async {
+Future<dynamic> executeDatabase(final context, String httpMethod, String path, dynamic body) async {
   // Parsear el path para obtener databaseId, collectionId, y documentId (si existe)
   final pathSegments = path.split('/');
   if (pathSegments.length < 3) {
@@ -29,6 +29,10 @@ Future<dynamic> executeDatabase(String httpMethod, String path, dynamic body) as
   final databaseId = pathSegments[1];
   final collectionId = pathSegments[2];
   String? documentId = pathSegments.length > 3 ? pathSegments[3] : null;
+
+  context.log('databaseId: $databaseId');
+  context.log('collectionId: $collectionId');
+  context.log('documentId: ${documentId ?? 'NULL'}');
 
   switch (httpMethod.toUpperCase()) {
     case 'GET':
