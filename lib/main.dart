@@ -1,8 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:dart_appwrite/dart_appwrite.dart' as appwrite;
+import './appwrite-sdk.dart' as sdk;
 
 const access_key = "ca39f98b01df960c01efdf1520609537";
 
@@ -12,18 +11,14 @@ http.Client get httpClient => _httpClient ?? http.Client();
 
 set httpClient(http.Client client) => _httpClient = client;
 
-late final appwrite.Client client;
-late final appwrite.Database database;
-
 Future<dynamic> main(final context) async {
 
-  context.log("version: 0.5");
-  context.log("req.body = ${context.req.body}");
+  context.log("version: 0.6");
 
   final requestBody = context.req.body;
 
   final String apiKey = requestBody['apiKey'];
-  await init(apiKey);
+  await sdk.init(apiKey);
 
   if (context.req.path == '/eur') {
     final amountInEuros = double.parse(context.req.query['amount']);
@@ -47,11 +42,4 @@ Future<dynamic> main(final context) async {
         }, 400);
 }
 
-Future init(String apiKey) async {
-  client = appwrite.Client()
-        .setEndpoint('https://cloud.appwrite.io/v1')
-        .setProject(Platform.environment['APPWRITE_PROJECT_ID'])
-        .setKey(apiKey);
 
-  database = appwrite.Database(client);
-}
