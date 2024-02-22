@@ -3,7 +3,7 @@ import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../../../functions/gateway/main.dart' as sut;
+import '../../../lib/main.dart' as sut;
 
 @GenerateNiceMocks([MockSpec<http.Client>()])
 import 'main_test.mocks.dart';
