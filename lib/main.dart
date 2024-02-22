@@ -28,5 +28,8 @@ Future<dynamic> main(final context) async {
     return context.res.send(amountInDollars.toStringAsFixed(2));
   }
 
-  return context.res.notFound('Invalid currency ${context.req.path}.');
+  return context.res.json({
+          'ok': false, 
+          'message': 'Invalid currency ${context.req.path}.'
+        }, 400);
 }
