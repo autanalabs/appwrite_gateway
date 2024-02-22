@@ -17,10 +17,14 @@ late final appwrite.Database database;
 
 Future<dynamic> main(final context) async {
 
-  context.log("DEBUG: req.body = ${context.req.body}");
+  context.log("version: 0.4");
+  context.log("req.body = ${context.req.body}");
 
-  final String apiKey = context.req.body;
+  final requestBody = json.decode(context.req.body);
+
+  final String apiKey = requestBody['apiKey'];
   await init(apiKey);
+
   if (context.req.path == '/eur') {
     final amountInEuros = double.parse(context.req.query['amount']);
     final response = await httpClient.get(Uri.parse('http://api.exchangerate.host/live?source=EUR&currencies=USD&access_key=$access_key'));
