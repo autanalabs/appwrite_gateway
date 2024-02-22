@@ -14,6 +14,7 @@ set httpClient(http.Client client) => _httpClient = client;
 Future<dynamic> main(final context) async {
 
   context.log("version: 0.6");
+  context.log('headers: ${context.req.headers}');
 
   final requestBody = context.req.body;
 
