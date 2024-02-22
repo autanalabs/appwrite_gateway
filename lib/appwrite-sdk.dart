@@ -5,7 +5,7 @@ late final appwrite.Client client;
 late final appwrite.Database database;
 bool _initialized = false;
 
-Future init(String apiKey) async {
+Future init(final context, final String apiKey) async {
   if (!_initialized) {
     client = appwrite.Client()
           .setEndpoint('https://cloud.appwrite.io/v1')
@@ -14,5 +14,6 @@ Future init(String apiKey) async {
 
     database = appwrite.Database(client);
     _initialized = true;
+    context.log('Appwrite SDK initialized');
   }
 }

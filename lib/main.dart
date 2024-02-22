@@ -18,7 +18,7 @@ Future<dynamic> main(final context) async {
   final requestBody = context.req.body;
 
   final String apiKey = requestBody['apiKey'];
-  await sdk.init(apiKey);
+  await sdk.init(context, apiKey);
 
   if (context.req.path == '/eur') {
     final amountInEuros = double.parse(context.req.query['amount']);
