@@ -13,12 +13,14 @@ set httpClient(http.Client client) => _httpClient = client;
 
 Future<dynamic> main(final context) async {
 
-  context.log("version: 0.6");
+  context.log("version: 0.7");
   context.log('headers: ${context.req.headers}');
+  context.log('auth header: ${context.req.headers['authorization']}');
 
   final requestBody = context.req.body;
 
-  final String apiKey = requestBody['apiKey'];
+  final String apiKey = context.req.headers['authorization'].replaceFirst('Bearer','').trim();
+ 
   await sdk.init(context, apiKey);
 
   if (context.req.path == '/eur') {
