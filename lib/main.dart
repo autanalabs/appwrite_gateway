@@ -14,14 +14,15 @@ set httpClient(http.Client client) => _httpClient = client;
 Future<dynamic> main(final context) async {
 
   context.log("version: 0.7");
-  context.log('headers: ${context.req.headers}');
-  context.log('auth header: ${context.req.headers['authorization']}');
+  // context.log('headers: ${context.req.headers}');
+  // context.log('auth header: ${context.req.headers['authorization']}');
 
-  final requestBody = context.req.body;
 
   final String apiKey = context.req.headers['authorization'].replaceFirst('Bearer','').trim();
  
   await sdk.init(context, apiKey);
+
+  final String path = context.req.path;
 
   if (context.req.path == '/eur') {
     final amountInEuros = double.parse(context.req.query['amount']);
@@ -39,10 +40,28 @@ Future<dynamic> main(final context) async {
     return context.res.send(amountInDollars.toStringAsFixed(2));
   }
 
+  if (path.startsWith('/api')) {
+    try {
+      final requestBody = context.req.body;
+      final httpMethod = context.req.method;
+      final result = await sdk.executeDatabase(httpMethod, path, requestBody);
+      return context.res.json({
+          'ok': true, 
+          'response': result
+        }, 200);
+
+    } catch (error) {
+        return context.res.json({
+          'ok': false, 
+          'message': 'Error: $error'
+        }, 500);
+    } 
+  }
+
   return context.res.json({
           'ok': false, 
-          'message': 'Invalid currency ${context.req.path}.'
-        }, 400);
+          'message': 'Invalid path $path.'
+        }, 404);
 }
 
 

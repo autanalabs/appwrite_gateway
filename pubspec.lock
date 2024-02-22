@@ -157,10 +157,10 @@ packages:
     dependency: "direct main"
     description:
       name: dart_appwrite
-      sha256: be141adb9673206d00b09234d7cb19be4c57823c9592440f3b290c1fc27706eb
+      sha256: "6bf029cd42fb8bcea30e5bc201c3c07b07ea6116284d7c16cdbb5aa9379168df"
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.0"
+    version: "10.1.1"
   dart_style:
     dependency: transitive
     description:
@@ -169,14 +169,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.4"
-  dio:
-    dependency: transitive
-    description:
-      name: dio
-      sha256: "7d328c4d898a61efc3cd93655a0955858e29a0aa647f0f9e02d59b3bb275e2e8"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.0.6"
   file:
     dependency: transitive
     description:
@@ -221,10 +213,10 @@ packages:
     dependency: "direct main"
     description:
       name: http
-      sha256: "759d1a329847dd0f39226c688d3e06a6b8679668e350e2891a6474f8b4bb8525"
+      sha256: "4c3f04bfb64d3efd508d06b41b825542f08122d30bda4933fb95c069d22a4fa3"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.0"
+    version: "1.0.0"
   http_multi_server:
     dependency: transitive
     description:
