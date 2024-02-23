@@ -59,7 +59,7 @@ Future<dynamic> executeDatabase(final context, String httpMethod, String path, d
         // Crear un nuevo documento si no se proporciona documentId
         context.log('operation: creating document.');
         final document = await databases.createDocument(databaseId: databaseId, 
-        collectionId: collectionId,  documentId: 'newId()',
+        collectionId: collectionId,  documentId: 'unique()',
         data: body);
         return document.data;
       } else {
