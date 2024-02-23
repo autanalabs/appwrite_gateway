@@ -13,7 +13,7 @@ set httpClient(http.Client client) => _httpClient = client;
 
 Future<dynamic> main(final context) async {
 
-  context.log("version: 0.7");
+  context.log("version: 0.8");
   // context.log('headers: ${context.req.headers}');
   // context.log('auth header: ${context.req.headers['authorization']}');
 
