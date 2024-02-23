@@ -13,7 +13,7 @@ set httpClient(http.Client client) => _httpClient = client;
 
 Future<dynamic> main(final context) async {
 
-  context.log("version: 0.9");
+  context.log("version: 0.11");
   // context.log('headers: ${context.req.headers}');
   // context.log('auth header: ${context.req.headers['authorization']}');
 
@@ -51,6 +51,7 @@ Future<dynamic> main(final context) async {
         }, 200);
 
     } catch (error) {
+        context.log('ERROR: $error.');
         return context.res.json({
           'ok': false, 
           'message': 'Error: $error'

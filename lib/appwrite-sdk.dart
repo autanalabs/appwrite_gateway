@@ -38,21 +38,29 @@ Future<dynamic> executeDatabase(final context, String httpMethod, String path, d
     case 'GET':
       if (documentId == null) {
         // Listar documentos si no se proporciona documentId
-        return await databases.listDocuments(databaseId: databaseId, 
+        context.log('operation: reading documents.');
+        final DocumentList documents = await databases
+        .listDocuments(databaseId: databaseId, 
         collectionId: collectionId);
+        return documents.documents.map((doc) => doc.data).toList();
       } else {
         // Recuperar un documento específico si se proporciona documentId
-        return await databases.getDocument(databaseId: databaseId,
+        context.log('operation: reading document by ID.');
+        final document = await databases.getDocument(databaseId: databaseId, 
         collectionId: collectionId, documentId: documentId);
+        // Devuelve directamente la data del documento.
+        return document.data;
       }
     case 'POST':
       if (documentId == null) {
         // Crear un nuevo documento si no se proporciona documentId
+        context.log('operation: creating document.');
         return await databases.createDocument(databaseId: databaseId, 
         collectionId: collectionId,  documentId: 'newId()',
         data: body);
       } else {
         // Actualizar un documento específico si se proporciona documentId
+        context.log('operation: updating document.');
         return await databases.updateDocument(databaseId: databaseId, 
         collectionId: collectionId, documentId: documentId, 
         data: body);
@@ -62,6 +70,7 @@ Future<dynamic> executeDatabase(final context, String httpMethod, String path, d
         throw Exception('Eliminar todos los documentos no está permitido.');
       } else {
         // Eliminar un documento específico
+        context.log('operation: deleting document.');
         return await databases.deleteDocument(databaseId: databaseId, 
         collectionId: collectionId, documentId: documentId);
       }
