@@ -22,13 +22,13 @@ Future init(final context, final String apiKey) async {
 Future<dynamic> executeDatabase(final context, String httpMethod, String path, dynamic body) async {
   // Parsear el path para obtener databaseId, collectionId, y documentId (si existe)
   final pathSegments = path.split('/');
-  if (pathSegments.length < 3) {
+  if (pathSegments.length < 4) {
     throw Exception('Path inválido. Debe ser "/api/{databaseId}/{collectionId}/{documentId}?".');
   }
 
-  final databaseId = pathSegments[1];
-  final collectionId = pathSegments[2];
-  String? documentId = pathSegments.length > 3 ? pathSegments[3] : null;
+  final databaseId = pathSegments[2];
+  final collectionId = pathSegments[3];
+  String? documentId = pathSegments.length > 4 ? pathSegments[4] : null;
 
   context.log('databaseId: $databaseId');
   context.log('collectionId: $collectionId');
