@@ -58,15 +58,17 @@ Future<dynamic> executeDatabase(final context, String httpMethod, String path, d
       if (documentId == null) {
         // Crear un nuevo documento si no se proporciona documentId
         context.log('operation: creating document.');
-        return await databases.createDocument(databaseId: databaseId, 
+        final document = await databases.createDocument(databaseId: databaseId, 
         collectionId: collectionId,  documentId: 'newId()',
         data: body);
+        return document.data;
       } else {
         // Actualizar un documento específico si se proporciona documentId
         context.log('operation: updating document.');
-        return await databases.updateDocument(databaseId: databaseId, 
+        final document = await databases.updateDocument(databaseId: databaseId, 
         collectionId: collectionId, documentId: documentId, 
         data: body);
+        return document.data;
       }
     case 'DELETE':
       if (documentId == null) {
