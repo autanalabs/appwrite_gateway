@@ -28,7 +28,10 @@ Future<dynamic> executeDatabase(final context, String httpMethod, String path, d
 
   final databaseId = pathSegments[2];
   final collectionId = pathSegments[3];
-  String? documentId = pathSegments.length > 4 ? pathSegments[4] : null;
+  String? documentId = (pathSegments.length > 4 && pathSegments[4].trim().isNotEmpty) ? 
+     pathSegments[4].trim() : null;
+
+  if (documentId != null && documentId.isEmpty)
 
   context.log('databaseId: $databaseId');
   context.log('collectionId: $collectionId');
